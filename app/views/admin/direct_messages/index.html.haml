@@ -1,0 +1,56 @@
+- content_for :page_title do
+  = t('admin.direct_messages.title')
+
+= form_with url: admin_direct_messages_path, method: :get, class: :simple_form do |form|
+  .fields-group
+    .input.string.optional
+      = form.text_field :q,
+                        value: params[:q],
+                        class: 'string optional',
+                        placeholder: t('admin.direct_messages.search_placeholder')
+    .input.string.optional
+      = form.text_field :exclude_mentioning,
+                        value: params[:exclude_mentioning],
+                        class: 'string optional',
+                        placeholder: t('admin.direct_messages.exclude_mentioning_placeholder')
+    %span.hint= t('admin.direct_messages.exclude_mentioning_hint')
+
+  .actions
+    %button.button= t('admin.accounts.search')
+    = link_to t('admin.accounts.reset'), admin_direct_messages_path, class: 'button button--dangerous'
+
+.table-wrapper
+  %table.table
+    %thead
+      %tr
+        %th= t('admin.direct_messages.sender')
+        %th= t('admin.direct_messages.recipients')
+        %th= t('admin.direct_messages.content')
+        %th= t('admin.direct_messages.created_at')
+    %tbody
+      - if @direct_messages.empty?
+        %tr
+          %td{ colspan: 4, style: 'text-align: center; padding: 2rem;' }
+            = t('admin.direct_messages.empty')
+      - else
+        - @direct_messages.each do |status|
+          %tr
+            %td= admin_account_link_to status.account
+            %td
+              - status.mentioned_accounts.each do |account|
+                = admin_account_inline_link_to account
+            %td
+              = link_to truncate(strip_tags(status.content), length: 140),
+                        admin_account_status_path(status.account_id, status.id),
+                        title: t('admin.direct_messages.actions.view_details')
+            %td
+              = l(status.created_at, format: :short)
+
+- if @direct_messages.current_page > 1 || @direct_messages.next_page
+  %nav.pagination
+    - if @direct_messages.current_page > 1
+      %span.prev
+        = link_to safe_join([material_symbol('chevron_left'), t('pagination.prev')], ' '), admin_direct_messages_path(direct_message_filter_params.merge(page: @direct_messages.current_page - 1)), rel: 'prev'
+    - if @direct_messages.next_page
+      %span.next
+        = link_to safe_join([t('pagination.next'), material_symbol('chevron_right')], ' '), admin_direct_messages_path(direct_message_filter_params.merge(page: @direct_messages.next_page)), rel: 'next'

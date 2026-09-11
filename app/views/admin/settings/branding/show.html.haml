@@ -1,0 +1,35 @@
+- content_for :page_title do
+  = t('admin.settings.branding.title')
+
+- content_for :heading do
+  = render partial: 'admin/settings/shared/heading'
+
+= simple_form_for @admin_settings, url: admin_settings_branding_path, html: { id: 'edit_admin_settings', method: :patch } do |f|
+  = render 'shared/error_messages', object: @admin_settings
+
+  .fields-group
+    = f.input :site_title,
+              hint: false,
+              wrapper: :with_label
+
+  .fields-row
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :site_contact_username,
+                hint: false,
+                wrapper: :with_label
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :site_contact_email,
+                hint: false,
+                wrapper: :with_label
+
+  .fields-group
+    = f.input :site_short_description,
+              as: :text,
+              hint: false,
+              input_html: { rows: 2, maxlength: Form::AdminSettings::DESCRIPTION_LIMIT },
+              wrapper: :with_block_label
+
+  .image-picker
+    = render partial: 'admin/settings/shared/upload', locals: { f: f, attribute: :thumbnail, upload: @admin_settings.thumbnail, preview_url: (@admin_settings.thumbnail.file.url(:'@1x') if @admin_settings.thumbnail.persisted?), frame: 'header' }
+    = render partial: 'admin/settings/shared/upload', locals: { f: f, attribute: :favicon, upload: @admin_settings.favicon, preview_url: (@admin_settings.favicon.file.url('48') if @admin_settings.favicon.persisted?) }
+    = render partial: 'admin/settings/shared/upload', locals: { f: f, attribute: :app_icon, upload: @admin_settings.app_icon, preview_url: (@admin_settings.app_icon.file.url('48') if @admin_settings.app_icon.persisted?) }

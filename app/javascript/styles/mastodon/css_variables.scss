@@ -1,0 +1,58 @@
+@use 'sass:color';
+@use 'functions' as *;
+@use 'variables' as *;
+
+:root {
+  --dropdown-border-color: #{lighten($ui-base-color, 4%)};
+  --dropdown-background-color: #{rgba(darken($ui-base-color, 8%), 0.9)};
+  --dropdown-shadow: 0 20px 25px -5px #{rgba($base-shadow-color, 0.25)},
+  0 8px 10px -6px #{rgba($base-shadow-color, 0.25)};
+  --modal-background-color: #{rgba(darken($ui-base-color, 8%), 0.7)};
+  --modal-shadow: 0 0 2px #00000014, 0 0 22px #00000014;
+  --modal-background-variant-color: #{rgba($ui-base-color, 0.7)};
+  --modal-border-color: #{rgba(lighten($ui-base-color, 4%), 1)};
+  --background-border-color: #{lighten($ui-base-color, 4%)};
+
+  --color-border: var(--background-border-color);
+
+  --color-dim: #{$darker-text-color};
+
+  --color-icon-button-hover: color-mix(
+    in srgb,
+    var(--color-fg, #{$primary-text-color}) 8%,
+    transparent
+  );
+  --background-filter: blur(10px) saturate(180%) contrast(75%) brightness(70%);
+  --background-color: #{darken($ui-base-color, 8%)};
+  --background-color-tint: #{rgba(darken($ui-base-color, 8%), 0.9)};
+  --surface-background-color: #{darken($ui-base-color, 4%)};
+  --surface-variant-background-color: #{$ui-base-color};
+  --surface-variant-active-background-color: #{lighten($ui-base-color, 4%)};
+
+  --color-recieve-message-text: var(--color-fg, #{$primary-text-color});
+  --color-recieve-message-background: var(--color-thread-line, #{$ui-base-color});
+  --color-sent-message-text: #{$primary-text-color};
+  --color-sent-message-background: var(
+    --color-brand-longwhile,
+    #{$long-while-600}
+  );
+
+  --color-hover-message-list-background: var(
+    --color-light-shade,
+    #{color.scale($ui-base-color, $lightness: 4%)}
+  );
+  --color-noti-hover: #{color.adjust($ui-base-color, $alpha: -0.5)};
+  --avatar-border-radius: 8px;
+  --media-outline-color: #{rgba(#fcf8ff, 0.15)};
+  --overlay-icon-shadow: drop-shadow(0 0 8px #{rgba($base-shadow-color, 0.35)});
+  --error-background-color: #{darken($error-red, 16%)};
+  --error-active-background-color: #{darken($error-red, 12%)};
+  --on-error-color: #fff;
+  --rich-text-container-color: rgb(24, 64, 87);
+  --rich-text-text-color: rgb(175, 226, 255);
+  --rich-text-decorations-color: rgb(58, 98, 128);
+  --input-placeholder-color: #{$dark-text-color};
+  --input-background-color: rgb(14, 14, 16);
+  --on-input-color: #{$secondary-text-color};
+  --color-column: transparent;
+}

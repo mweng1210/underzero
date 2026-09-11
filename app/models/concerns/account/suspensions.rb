@@ -1,0 +1,61 @@
+# frozen_string_literal: true
+
+module Account::Suspensions
+  extend ActiveSupport::Concern
+
+  included do
+    scope :suspended, -> { where.not(suspended_at: nil) }
+    scope :without_suspended, -> { where(suspended_at: nil) }
+
+    scope :without_unavailable, -> { where(suspended_at: nil, anonymized_at: nil) }
+  end
+
+  def suspended?
+    suspended_at.present? && !instance_actor?
+  end
+
+  # A deleted account whose posts were kept. It has no owner any more, so it is
+  # treated as unavailable everywhere an account can act, but its statuses stay
+  # readable — see StatusPolicy#show?.
+  def anonymized?
+    anonymized_at.present?
+  end
+
+  def unavailable?
+    suspended? || anonymized?
+  end
+
+  def suspended_locally?
+    suspended? && suspension_origin_local?
+  end
+
+  def suspended_permanently?
+    suspended? && deletion_request.nil?
+  end
+  alias permanently_unavailable? suspended_permanently?
+
+  def suspended_temporarily?
+    suspended? && deletion_request.present?
+  end
+
+  def suspend!(date: Time.now.utc, origin: :local, block_email: true)
+    transaction do
+      create_deletion_request!
+      update!(suspended_at: date, suspension_origin: origin)
+      create_canonical_email_block! if block_email
+    end
+
+    # GHSA-r2fh-jr9c-9pxh: terminate any open streaming sessions for a local
+    # account the moment it is suspended (reconnection is blocked by the
+    # streaming server's account-status check).
+    redis.publish("timeline:system:#{id}", Oj.dump(event: :kill)) if local?
+  end
+
+  def unsuspend!
+    transaction do
+      deletion_request&.destroy!
+      update!(suspended_at: nil, suspension_origin: nil)
+      destroy_canonical_email_block!
+    end
+  end
+end
