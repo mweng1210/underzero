@@ -1,13 +1,46 @@
-/* 전체 배경에 이미지 적용 */
+/* ==========================================================================
+   1. 기본 공통 설정 (배경 이미지의 기본 위치 및 크기 정의)
+   ========================================================================== */
 body, .ui, .app-body {
-  background-image: url('../images/background.png') !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-attachment: fixed !important;
 }
 
-/* 가독성을 위해 타임라인 칼럼에 반투명 배경 주기 */
+/* 타임라인 칼럼을 살짝 반투명하게 만들어 글씨 가독성 확보 */
 .column, .drawer, .scrollable {
-  background-color: rgba(25, 25, 35, 0.85) !important; /* 어두운 반투명 */
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* ==========================================================================
+   2. 다크 테마 전용 설정 (검은색 반투명 레이어 씌우기)
+   ========================================================================== */
+@media (prefers-color-scheme: mastodon-bird-ui-dark) {
+  body, .ui, .app-body {
+    /* 50% 불투명도의 검은색 레이어(rgba 0,0,0,0.5)를 이미지 위에 얹습니다 */
+    background-image: 
+      linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+      url('../images/background.png') !important;
+  }
+  
+  /* 다크 테마일 때 글씨가 잘 보이도록 타임라인 배경을 어둡게 조정 */
+  .column, .drawer, .scrollable {
+    background-color: rgba(20, 20, 25, 0.85) !important;
+  }
+}
+
+/* ==========================================================================
+   3. 화이트(라이트) 테마 전용 설정 (검은색 레이어 없이 원본 이미지 노출)
+   ========================================================================== */
+@media (prefers-color-scheme: mastodon-bird-ui-light) {
+  body, .ui, .app-body {
+    /* 레이어 없이 원본 이미지만 깔끔하게 보여줍니다 */
+    background-image: url('../images/background.png') !important;
+  }
+  
+  /* 라이트 테마일 때 글씨가 잘 보이도록 타임라인 배경을 밝게 조정 */
+  .column, .drawer, .scrollable {
+    background-color: rgba(255, 255, 255, 0.85) !important;
+  }
 }
