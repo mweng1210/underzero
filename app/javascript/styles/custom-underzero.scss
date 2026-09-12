@@ -1,7 +1,13 @@
-body {
+/* 전체 배경에 이미지 적용 */
+body, .ui, .app-body {
   background-image: url('/app/javascript/images/background.jpg') !important;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+}
+
+/* 가독성을 위해 타임라인 칼럼에 반투명 배경 주기 */
+.column, .drawer, .scrollable {
+  background-color: rgba(25, 25, 35, 0.85) !important; /* 어두운 반투명 */
 }
