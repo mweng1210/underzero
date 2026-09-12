@@ -1,7 +1,6 @@
 /* ==========================================================================
-   1. 기본 베이스 설정 (화이트 모드를 기본값으로 배치)
+   1. 기본 베이스 설정 (아무 조건 없는 상태 = 화이트 모드 고정)
    ========================================================================== */
-/* 어떤 조건도 만족하지 않는 기본 상태를 화이트 모드로 지정합니다 */
 body, .ui, .app-body {
   background-image: url('../images/bg-light.png') !important;
   background-size: cover !important;
@@ -10,37 +9,35 @@ body, .ui, .app-body {
   background-attachment: fixed !important;
 }
 
-/* 화이트 모드 타임라인: 밝은 반투명 처리 */
+/* 화이트 모드 타임라인: 흰색 반투명 처리 */
 .column, .drawer, .scrollable, .column-letterbox {
   background-color: rgba(255, 255, 255, 0.5) !important;
   background: rgba(255, 255, 255, 0.5) !important;
 }
 
+
 /* ==========================================================================
-   2. 다크 모드 감지 (마스토돈 내장 클래스 기반)
+   2. 다크 테마 2종 활성화 시 강제 전환 설정
    ========================================================================== */
-/* 마스토돈이 HTML이나 BODY 태그에 다크 테마 클래스/속성을 부여했을 때 */
-html.theme-dark body, html.theme-dark .ui, html.theme-dark .app-body,
-body.theme-dark, body.dark-theme, html[theme="dark"] body {
+/* 다크 테마명(theme-mastodon-bird-ui-dark 또는 theme-default)이 body 클래스에 붙었을 때 */
+body.theme-mastodon-bird-ui-dark, 
+body.theme-mastodon-bird-ui-dark .ui, 
+body.theme-mastodon-bird-ui-dark .app-body,
+body.theme-default, 
+body.theme-default .ui, 
+body.theme-default .app-body {
   background-image: url('../images/bg-dark.png') !important;
 }
 
-html.theme-dark .column, html.theme-dark .drawer, html.theme-dark .scrollable, html.theme-dark .column-letterbox,
-body.theme-dark .column, body.theme-dark .scrollable, html[theme="dark"] .scrollable {
-  background-color: rgba(20, 20, 25, 0.85) !important;
+/* 다크 테마 2종일 때 타임라인: 어두운 반투명(검은색 레이어) 처리 */
+body.theme-mastodon-bird-ui-dark .column, 
+body.theme-mastodon-bird-ui-dark .drawer, 
+body.theme-mastodon-bird-ui-dark .scrollable, 
+body.theme-mastodon-bird-ui-dark .column-letterbox,
+body.theme-default .column, 
+body.theme-default .drawer, 
+body.theme-default .scrollable, 
+body.theme-default .column-letterbox {
+  background-color: rgba(20, 20, 25, 0.5) !important;
   background: rgba(20, 20, 25, 0.5) !important;
-}
-
-/* ==========================================================================
-   3. 다크 모드 감지 (시스템 환경설정 기반 브라우저 대응)
-   ========================================================================== */
-/* 사용자의 기기나 브라우저 자체가 다크 모드일 때 (미디어 쿼리는 별도로 분리해야 정상 작동함) */
-@media (prefers-color-scheme: dark) {
-  body, .ui, .app-body {
-    background-image: url('../images/bg-dark.png') !important;
-  }
-  .column, .drawer, .scrollable, .column-letterbox {
-    background-color: rgba(20, 20, 25, 0.85) !important;
-    background: rgba(20, 20, 25, 0.85) !important;
-  }
 }
