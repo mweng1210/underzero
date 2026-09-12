@@ -18,9 +18,7 @@ body, .ui, .app-body {
    ========================================================================== */
 @media (prefers-color-scheme: dark) {
   body, .ui, .app-body {
-    /* 50% 불투명도의 검은색 레이어(rgba 0,0,0,0.5)를 이미지 위에 얹습니다 */
-    background-image: 
-      url('../images/bg-dark.png') !important;
+    background-image: url('../images/bg-dark.png') !important;
   }
   
   /* 다크 테마일 때 글씨가 잘 보이도록 타임라인 배경을 어둡게 조정 */
@@ -35,7 +33,7 @@ body, .ui, .app-body {
 @media (prefers-color-scheme: light) {
   body, .ui, .app-body {
     /* 레이어 없이 원본 이미지만 깔끔하게 보여줍니다 */
-    background-image: url('../images/bbg-light.png') !important;
+    background-image: url('../images/bg-light.png') !important;
   }
   
   /* 라이트 테마일 때 글씨가 잘 보이도록 타임라인 배경을 밝게 조정 */
