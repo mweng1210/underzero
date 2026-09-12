@@ -17,11 +17,23 @@ body, .ui, .app-body {
    2. 다크 테마 전용 설정 (검은색 반투명 레이어 씌우기)
    ========================================================================== */
 @media (prefers-color-scheme: dark) {
-  body, .ui, .app-body {
-    /* 50% 불투명도의 검은색 레이어(rgba 0,0,0,0.5)를 이미지 위에 얹습니다 */
-    background-image: 
-      linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) !important, 
-      url('../images/background.png') !important;
+    body, .ui, .app-body {
+    position: relative;
+    background-image: url('../images/background.png') !important;
+    z-index: 0;
+  }
+
+  /* 배경 바로 위에 검은색 반투명 레이어를 강제로 생성 */
+  body::before, .ui::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5) !important; /* 50% 어둡게 */
+    z-index: -1; /* 타임라인 글씨보다는 뒤에, 배경 이미지보다는 앞에 위치 */
+    pointer-events: none; /* 클릭 방해 금지 */
   }
   
   /* 다크 테마일 때 글씨가 잘 보이도록 타임라인 배경을 어둡게 조정 */
@@ -35,8 +47,8 @@ body, .ui, .app-body {
    ========================================================================== */
 @media (prefers-color-scheme: light) {
   body, .ui, .app-body {
-    linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)) !important,
-    background-image: url('../images/background.png') !important;
+    linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+    background-image: url('../images/background.png');
   }
   
   /* 라이트 테마일 때 글씨가 잘 보이도록 타임라인 배경을 밝게 조정 */
