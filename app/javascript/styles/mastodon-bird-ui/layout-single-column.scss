@@ -71,7 +71,7 @@
   --color-column: #10171e;
   --color-bg-compose-form-focus: #192530;
 
-  --color-brand-longwhile: #2B4351;
+  --color-brand-longwhile: #6B7D87;
   --color-brand-longwhile-dim: #8b98a5;
 
   --color-noti-hover: #17222dcf;
@@ -82,12 +82,12 @@
 
   --color-on-brand: #ffffff;
 
-  --color-button-border: #6f7b85;
+  --color-button-border: #2B4351;
 
   --color-brand-longwhile-threaded-line: #425364;
 
   --color-column-link: #ffffff;
-  --color-column-link-hover: #6B7D87;
+  --color-column-link-hover: #2B4351;
 
   --color-brand-longwhile-heart: #f91880;
   --color-brand-longwhile-favourite: #ffac33;
@@ -309,8 +309,8 @@ body.theme-mastodon-bird-ui-light {
   --color-column: #ffffff3d;
   --color-bg-compose-form-focus: #f3f3f3fc;
 
-  --color-brand-longwhile: #2B4351;
-  --color-brand-longwhile-dim: #6f7b85;
+  --color-brand-longwhile: #6B7D87;
+  --color-brand-longwhile-dim: #2B4351;
 
   --color-noti-hover: #6e7b8d0a;
   --color-modal-overlay: #20689926;
@@ -524,7 +524,11 @@ body.theme-mastodon-bird-ui-light {
 }
 
 body.layout-single-column {
-  background-color: var(--color-bg);
+  background-image:url('/app/javascript/images/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: var(--color-fg);
 }
 
