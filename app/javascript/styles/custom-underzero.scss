@@ -20,7 +20,7 @@ body, .ui, .app-body {
   body, .ui, .app-body {
     /* 50% 불투명도의 검은색 레이어(rgba 0,0,0,0.5)를 이미지 위에 얹습니다 */
     background-image: 
-      linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+      linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) !important, 
       url('../images/background.png') !important;
   }
   
@@ -35,12 +35,12 @@ body, .ui, .app-body {
    ========================================================================== */
 @media (prefers-color-scheme: light) {
   body, .ui, .app-body {
-    /* 레이어 없이 원본 이미지만 깔끔하게 보여줍니다 */
+    linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)) !important,
     background-image: url('../images/background.png') !important;
   }
   
   /* 라이트 테마일 때 글씨가 잘 보이도록 타임라인 배경을 밝게 조정 */
   .column, .drawer, .scrollable {
-    background-color: rgba(255, 255, 255, 0.85) !important;
+    background-color: rgba(255, 255, 255, 0.5) !important;
   }
 }
