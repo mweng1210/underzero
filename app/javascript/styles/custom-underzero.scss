@@ -16,7 +16,7 @@ body, .ui, .app-body {
 /* ==========================================================================
    2. 다크 테마 전용 설정 (검은색 반투명 레이어 씌우기)
    ========================================================================== */
-@media (prefers-color-scheme: mastodon-bird-ui-dark) {
+@media (prefers-color-scheme: dark) {
   body, .ui, .app-body {
     /* 50% 불투명도의 검은색 레이어(rgba 0,0,0,0.5)를 이미지 위에 얹습니다 */
     background-image: 
@@ -33,7 +33,7 @@ body, .ui, .app-body {
 /* ==========================================================================
    3. 화이트(라이트) 테마 전용 설정 (검은색 레이어 없이 원본 이미지 노출)
    ========================================================================== */
-@media (prefers-color-scheme: mastodon-bird-ui-light) {
+@media (prefers-color-scheme: light) {
   body, .ui, .app-body {
     /* 레이어 없이 원본 이미지만 깔끔하게 보여줍니다 */
     background-image: url('../images/background.png') !important;
