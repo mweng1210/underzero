@@ -21,19 +21,22 @@ body, .ui, .app-body {
 }
 
 .compose-form__upload .icon-button {
-  background-color: #6B7D87 !important;
+  background-color: #6B7D8780 !important;
   color: white !important;
 }
 
 
 .compose-form__upload .icon-button:hover {
-  background-color: #2e4653 !important;
+  background-color: #2e465380 !important;
   color: white !important;
 }
 
 .compose-form__upload__warning .icon-button.active, .compose-form__upload .icon-button {
   color: white !important;
-  filter: invert(99%) sepia(0%) saturate(0%) hue-rotate(150deg) brightness(101%) contrast(104%) !important;
+}
+
+.compose-form__upload__actions button:nth-child(1) {
+  background-color: none !important;
 }
 
 
