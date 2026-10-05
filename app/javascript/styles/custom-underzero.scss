@@ -15,6 +15,22 @@ body, .ui, .app-body {
   background: #ffffff50 !important;
 }
 
+.compose-form__upload__warning .icon-button.active {
+  background-color: #6B7D87 !important;
+  color: white !important;
+}
+
+.compose-form__upload .icon-button {
+  background-color: #6B7D87 !important;
+  color: white !important;
+}
+
+
+.compose-form__upload .icon-button:hover {
+  background-color: #2e4653 !important;
+  color: white !important;
+}
+
 
 /* ==========================================================================
    2. 다크 테마 2종 활성화 시 강제 전환 설정
