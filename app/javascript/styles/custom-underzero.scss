@@ -35,8 +35,8 @@ body, .ui, .app-body {
   color: white !important;
 }
 
-button .icon-button .compose-form__upload__delete svg {
-  fill: white !important;
+.icon-button .compose-form__upload__delete {
+  filter: invert(99%) sepia(0%) saturate(0%) hue-rotate(150deg) brightness(101%) contrast(104%) !important;
 }
 
 
